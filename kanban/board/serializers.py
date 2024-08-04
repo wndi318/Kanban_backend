@@ -1,4 +1,4 @@
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Contact, Task
 
@@ -14,7 +14,7 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
         model = Task
         fields = ['id','title', 'description', 'users', 'status', 'priority', 'due_date']
 
-class ContactSerializer(serializers.HyperlinkedModelSerializer):
+class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
-        fields = ['id','firstname', 'lastname', 'mail']
+        fields = '__all__'

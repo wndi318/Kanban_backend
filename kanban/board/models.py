@@ -8,8 +8,14 @@ class Task(models.Model):
     created_at = models.DateField(default=datetime.date.today)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'({self.id}) {self.title}'
+
 class Contact(models.Model):
     firstname = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
     mail = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'{self.firstname} {self.lastname}'
 
