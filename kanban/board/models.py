@@ -16,12 +16,13 @@ class Task(models.Model):
     status = models.CharField(max_length=15, choices=[
         ('todo', 'Todo'),
         ('inProgress', 'In Progress'),
-        ('awaitFeedback', 'Await Feedback')
+        ('awaitFeedback', 'Await Feedback'),
+        ('done', 'Done')
     ], default='todo')
     priority = models.CharField(max_length=6, choices=[
         ('high', 'High'),
         ('medium', 'Medium'),
-        ('low', 'Low')
+        ('low', 'Low'),
     ], default='medium')
     due_date = models.DateField(default=datetime.date.today)
     assigned_to = models.ManyToManyField('Contact', related_name='assigned_tasks')
