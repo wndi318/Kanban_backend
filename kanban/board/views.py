@@ -10,6 +10,7 @@ from .serializers import ContactSerializer, Register, TaskSerializer, UserSerial
 from .models import Contact, Task
 from rest_framework.views import APIView
 from rest_framework import generics
+from django.contrib.auth import logout
 
 
 class LoginView(ObtainAuthToken):
@@ -24,6 +25,12 @@ class LoginView(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email
         })
+
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        logout(request)
     
 class RegisterView(generics.CreateAPIView):
    
