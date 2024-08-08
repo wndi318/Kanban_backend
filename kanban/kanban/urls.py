@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.urls import path
-from board.views import LoginView, ContactView, TaskView, CurrentUserView
+from board.views import LoginView, ContactView, TaskView, CurrentUserView, RegisterView
 
 urlpatterns = [
     path('login/', LoginView.as_view()),
+    path('register/', RegisterView.as_view()),
     path('contacts/', ContactView.as_view()),
     path('contacts/<int:pk>/', ContactView.as_view()),
     path('tasks/', TaskView.as_view()),

@@ -5,11 +5,12 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from .serializers import ContactSerializer, TaskSerializer, UserSerializer
+from rest_framework.permissions import AllowAny
+from .serializers import ContactSerializer, Register, TaskSerializer, UserSerializer
 from .models import Contact, Task
 from rest_framework.views import APIView
-from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from rest_framework import generics
+
 
 class LoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -23,6 +24,13 @@ class LoginView(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email
         })
+    
+class RegisterView(generics.CreateAPIView):
+   
+    serializer_class = Register
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
     
 class CurrentUserView(APIView):
     authentication_classes = [TokenAuthentication]
